@@ -49,7 +49,7 @@ function Room(props) {
       });
     };
   }, [roomName, token]);
-
+  
   return (
     <div className="room">
       <button onClick={logoutHandler}>Log out</button>
@@ -66,6 +66,7 @@ function Room(props) {
       {remoteParticipants.length!==0 ? (
         <div>
           <div>{remoteParticipants}</div>
+          
         </div>
       ) : (
         ""
