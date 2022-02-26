@@ -1,0 +1,18 @@
+.participant_feed {
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 1em;
+    padding-top: 1em;
+    background-color: "clear";
+  }
+
+.participant_name {
+    text-align: center;
+    font-weight: 300;
+    font-size: 30px;
+    margin-bottom: 1em;
+    padding-top: 1em;
+    background-color: "clear";
+    padding-bottom: 3px;
+    color: black;
+}

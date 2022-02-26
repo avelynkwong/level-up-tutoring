@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import "./Styling/Participant.css";
 
 function Participant(props) {
   const participant = props.participant;
@@ -65,7 +66,7 @@ function Participant(props) {
 
   return (
     <div className="participant_feed">
-      <h3 >{participant.identity}</h3>
+      <h3 className="participant_name">{participant.identity}</h3>
       <video ref={videoRef} autoPlay={true} />
       <audio ref={audioRef} autoPlay={true} muted={true} />
     </div>

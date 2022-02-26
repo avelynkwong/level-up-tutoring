@@ -14,12 +14,16 @@ body {
   min-height: 100%;
 }
 
-header {
+.header {
   background: #f0293e;
   color: #fff;
   text-align: center;
   flex-grow: 0;
-  margin-bottom: 2em;
+  padding: 30px;
+  font-size: 30px;
+  
+
+  bottom: 0px;
 }
 
 h1 {
@@ -84,6 +88,7 @@ button:hover {
 
 .room {
   position: relative;
+  background-color: #333e5a;
 }
 .room button {
   position: absolute;
@@ -96,10 +101,6 @@ button:hover {
   margin-bottom: 1em;
 }
 
-.local-participant {
-  text-align: center;
-  margin-bottom: 2em;
-}
 .remote-participants {
   display: flex;
   direction: vertical;

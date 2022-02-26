@@ -5,13 +5,10 @@ import VideoChat from './VideoChat';
 function App (){
   return (
     <div className="app">
-      <header>
-        <h1>Tutoring Application</h1>
-      </header>
-      <main>
+      <footer className='header'>
+        Level Up Tutoring
+      </footer>
         <VideoChat />
-      </main>
-      
     </div>
   );
 }

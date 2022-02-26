@@ -6,7 +6,8 @@ function VideoChat() {
   const [username, setUsername] = useState("");
   const [roomName, setRoomName] = useState("");
   const [token, setToken] = useState(null);
-
+  const [student_tutor, set_student_tutor] = useState("");
+  
   const userNameChangeHandler = useCallback((event) => {
     setUsername(event.target.value);
   }, []);
@@ -21,7 +22,7 @@ function VideoChat() {
       const data = await fetch("/video/token", {
         method: "POST",
         body: JSON.stringify({
-          identity: username,
+          identity: `${student_tutor} : ${username}`,
           room: roomName,
         }),
         headers: {
@@ -30,7 +31,7 @@ function VideoChat() {
       }).then((res) => res.json());
       setToken(data.token);
     },
-    [username, roomName]
+    [username, roomName, student_tutor]
   );
 
   const logoutHandler = useCallback((event) => {
@@ -45,13 +46,15 @@ function VideoChat() {
         <Lobby
           username={username}
           roomName={roomName}
+          student_tutor={student_tutor}
+          student_tutor_ChangeHandler={set_student_tutor}
           userNameChangeHandler={userNameChangeHandler}
           roomNameChangeHandler={roomNameChangeHandler}
           submitHandler={submitHandler}
         />
       )}
     </>
-  ); // we'll build up our response later
+  );
 }
 
 export default VideoChat;
