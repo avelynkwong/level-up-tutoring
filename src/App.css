@@ -10,7 +10,7 @@ html {
 
 body {
   font-family: Helvetica, Arial, sans-serif;
-  color: #333e5a;
+  background-color: #333e5a;
   min-height: 100%;
 }
 
@@ -128,19 +128,20 @@ button:hover {
   margin-bottom: 1em;
 }
 
-.remote-participants {
+/* .remote-participants {
   display: flex;
   direction: vertical;
   flex-wrap: nowrap;
   justify-content: space-between;
   padding: 0 2em 2em;
-}
-.participant_feed {
+  background-color: #333e5a;
+} */
+/* .participant_feed {
   background-color: #333e5a;
   text-align: center;
   font-weight: 300;
   margin-bottom: 1em;
-}
+} */
 .participant {
   background: #333e5a;
   padding: 10px;
@@ -223,4 +224,8 @@ footer a {
 .roleText {
   color: rgb(255, 255, 255);
   font-size: 18px;
+}
+
+.videoChat{
+  background-color: #49536d;
 }

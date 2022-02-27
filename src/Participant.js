@@ -9,33 +9,34 @@ function Participant(props) {
   const videoRef = useRef();
   const audioRef = useRef();
 
-  const trackpubsToTracks = trackMap => Array.from(trackMap.values())
-    .map(publication => publication.track)
-    .filter(track => track !== null);
+  const trackpubsToTracks = (trackMap) =>
+    Array.from(trackMap.values())
+      .map((publication) => publication.track)
+      .filter((track) => track !== null);
 
   useEffect(() => {
-    const trackSubscribed = track => {
-      if (track.kind === 'video') {
-        setVideoTracks(videoTracks => [...videoTracks, track]);
+    const trackSubscribed = (track) => {
+      if (track.kind === "video") {
+        setVideoTracks((videoTracks) => [...videoTracks, track]);
       } else {
-        setAudioTracks(audioTracks => [...audioTracks, track]);
+        setAudioTracks((audioTracks) => [...audioTracks, track]);
       }
     };
 
     // Remove Participant
-    const trackUnsubscribed = track => {
-      if (track.kind === 'video') {
-        setVideoTracks(videoTracks => videoTracks.filter(v => v !== track));
+    const trackUnsubscribed = (track) => {
+      if (track.kind === "video") {
+        setVideoTracks((videoTracks) => videoTracks.filter((v) => v !== track));
       } else {
-        setAudioTracks(audioTracks => audioTracks.filter(a => a !== track));
+        setAudioTracks((audioTracks) => audioTracks.filter((a) => a !== track));
       }
     };
 
     setVideoTracks(trackpubsToTracks(participant.videoTracks));
     setAudioTracks(trackpubsToTracks(participant.audioTracks));
 
-    participant.on('trackSubscribed', trackSubscribed);
-    participant.on('trackUnsubscribed', trackUnsubscribed);
+    participant.on("trackSubscribed", trackSubscribed);
+    participant.on("trackUnsubscribed", trackUnsubscribed);
 
     return () => {
       setVideoTracks([]);
@@ -57,7 +58,7 @@ function Participant(props) {
   useEffect(() => {
     const audioTrack = audioTracks[0];
     if (audioTrack) {
-        audioTrack.attach(audioRef.current);
+      audioTrack.attach(audioRef.current);
       return () => {
         audioTrack.detach();
       };
@@ -65,11 +66,16 @@ function Participant(props) {
   }, [audioTracks]);
 
   return (
-    <div className="participant_feed">
-      <h3 className="participant_name">{participant.identity}</h3>
+    <body className="participant_feed">
+      {participant?.identity.split(":")[0] === "Tutor " ? (
+        <h3 className="participant_name">{participant.identity}</h3>
+      ) : (
+        ""
+      )}
+      {/* <h3 className="participant_name">{participant.identity}</h3> */}
       <video ref={videoRef} autoPlay={true} />
       <audio ref={audioRef} autoPlay={true} muted={true} />
-    </div>
+    </body>
   );
 }
 

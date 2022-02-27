@@ -1,14 +1,12 @@
-import React from 'react';
-import './App.css';
-import VideoChat from './VideoChat';
+import React from "react";
+import "./App.css";
+import VideoChat from "./VideoChat";
 
-function App (){
+function App() {
   return (
     <div className="app">
-      <footer className='header'>
-        LevelUp Tutoring
-      </footer>
-        <VideoChat />
+      <footer className="header">LevelUp Tutoring</footer>
+      <VideoChat className="videoChat"/>
     </div>
   );
 }

@@ -6,10 +6,17 @@ import "./Styling/Room.css";
 
 function Room(props) {
   const ref = useRef(null);
-  const [image, takeScreenshot] = useScreenshot();
+
+  const base64ref = useRef(null);
+
+  const [image, takeScreenshot] = useScreenshot({
+    type: "image/jpeg",
+    quality: 1.0,
+  });
   const roomName = props.roomName;
   const token = props.token;
   const logoutHandler = props.logoutHandler;
+  //const [imageString, setImageString] = useState("");
 
   var isTutor = false;
 
@@ -20,18 +27,22 @@ function Room(props) {
     <Participant key={participant.sid} participant={participant} />
   ));
 
-  // useEffect(() => {
-  //   function getImage() {
-  //     console.log(ref.current);
-  //     if (ref.current !== null) {
-  //       takeScreenshot(ref.current); // Updates the image based on ss
-  //     }
-  //     setTimeout(() => {
-  //       getImage();
-  //     }, 2000);
-  //   }
-  //   getImage();
-  // });
+  useEffect(() => {
+    function getImage() {
+      if (ref.current !== null) {
+        
+        takeScreenshot(ref.current); // Updates the image based on ss
+        // console.log(imageString);
+        var base64 = document.getElementById("base64");
+        console.log(base64?.src);
+        // console.log(base64ref.current);
+      }
+      setTimeout(() => {
+        getImage();
+      }, 5000);
+    }
+    getImage();
+  }, []);
 
   useEffect(() => {
     const participantConnected = (participant) => {
@@ -49,7 +60,7 @@ function Room(props) {
       room.on("participantConnected", participantConnected);
       room.on("participantDisconnected", participantDisconnected);
       room.participants.forEach(participantConnected);
-    });
+    }, []);
 
     return () => {
       setRoom((currentRoom) => {
@@ -88,17 +99,18 @@ function Room(props) {
           ""
         )}
       </div>
-      <div>
+      <div className="remote-participants">
         <div ref={ref}>{remoteParticipants}</div>
-        {/* {isTutor ? (
+        {isTutor ? (
           <div>
-            <img src={image} alt="">
-              {console.log(image)}
+            <img id="base64" src={image} style={{display:"None"}} alt="">
+              {/* {console.log(image)} */}
+              {/* {setImageString(image)} */}
             </img>
           </div>
         ) : (
           ""
-        )} */}
+        )}
       </div>
     </div>
   );

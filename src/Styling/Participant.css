@@ -1,9 +1,10 @@
 .participant_feed {
     text-align: center;
     font-weight: 300;
-    margin-bottom: 1em;
-    padding-top: 1em;
-    background-color: "clear";
+    margin-bottom: 0em;
+    padding-top: 4em;
+    padding-bottom: 3em;
+    background-color: #333e5a;
   }
 
 .participant_name {

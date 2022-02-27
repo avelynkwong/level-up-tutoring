@@ -39,7 +39,7 @@ function VideoChat() {
   }, []);
 
   return (
-    <>
+    <div>
       {token ? (
         <Room roomName={roomName} token={token} logoutHandler={logoutHandler} />
         ) : (
@@ -53,7 +53,7 @@ function VideoChat() {
           submitHandler={submitHandler}
         />
       )}
-    </>
+    </div>
   );
 }
 
