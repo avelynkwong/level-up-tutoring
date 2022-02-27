@@ -9,11 +9,12 @@
 
 .participant_name {
     text-align: center;
-    font-weight: 300;
-    font-size: 30px;
-    margin-bottom: 1em;
-    padding-top: 1em;
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 0em;
+    padding-top: 0.25em;
     background-color: "clear";
-    padding-bottom: 3px;
-    color: black;
+    padding-bottom: 0.25em;
+    color: rgb(255, 255, 255);
+    
 }

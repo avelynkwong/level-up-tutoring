@@ -1,8 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import Video from "twilio-video";
 import Participant from "./Participant";
+import { db } from "./Firebase";
 import { useScreenshot } from "use-react-screenshot";
 import "./Styling/Room.css";
+import {
+  query,
+  collection,
+  getDocs,
+  setDoc,
+  where,
+  doc,
+} from "firebase/firestore";
+import axios from "axios";
+import ConfusionBanner from "./ConfusionBanner";
+import FadeIn from 'react-fade-in';
+
 
 function Room(props) {
   const ref = useRef(null);
@@ -22,20 +35,36 @@ function Room(props) {
 
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
+  const [isConfused, setIsConfused] = useState(true);
 
   const remoteParticipants = participants.map((participant) => (
     <Participant key={participant.sid} participant={participant} />
   ));
 
   useEffect(() => {
-    function getImage() {
+    async function getImage() {
       if (ref.current !== null) {
-        
         takeScreenshot(ref.current); // Updates the image based on ss
         // console.log(imageString);
         var base64 = document.getElementById("base64");
         console.log(base64?.src);
-        // console.log(base64ref.current);
+        
+        // If Base64 Image String Not Null, Add To DB
+        if (base64?.src) {
+          console.log("RUN");
+          try {
+            const userDocRef = doc(
+              db,
+              "base64_image_collection",
+              "base_64_img"
+            );
+            setDoc(userDocRef, { img_str: base64?.src }, { merge: true });
+          } catch (err) {
+            alert(err);
+          }
+        }
+        // Nudge the Backend
+        // Set the State of Confusion Here
       }
       setTimeout(() => {
         getImage();
@@ -88,7 +117,7 @@ function Room(props) {
 
   return (
     <div className="room">
-      <button onClick={logoutHandler}>Log out</button>
+      <button className = "logoutButton" onClick={logoutHandler}>Log out</button>
       <div className="local-participant">
         {room ? (
           <Participant
@@ -103,10 +132,19 @@ function Room(props) {
         <div ref={ref}>{remoteParticipants}</div>
         {isTutor ? (
           <div>
-            <img id="base64" src={image} style={{display:"None"}} alt="">
+            <img id="base64" src={image} style={{ display: "None" }} alt="">
               {/* {console.log(image)} */}
               {/* {setImageString(image)} */}
             </img>
+            {isConfused ? (
+              <FadeIn delay={300}>
+              <ConfusionBanner/>
+              </FadeIn>
+              
+            ) : (
+              ""
+            )}
+            {/* Render a BANNER */}
           </div>
         ) : (
           ""
