@@ -84,7 +84,7 @@ function Room(props) {
           <div ref={ref}>{remoteParticipants}</div>
           {isTutor ? (
             <div>
-              <button className="screenshot" onClick={getImage}>Take Phoot</button>
+              <button className="screenshot" onClick={getImage}>Start Analysis</button>
               <img src={image}></img>
             </div>
           ) : (
