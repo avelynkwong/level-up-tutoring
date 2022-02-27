@@ -128,6 +128,7 @@ function Room(props) {
           ""
         )}
       </div>
+      
       <div className="remote-participants">
         <div ref={ref}>{remoteParticipants}</div>
         {isTutor ? (

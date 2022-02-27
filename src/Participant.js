@@ -66,7 +66,7 @@ function Participant(props) {
   }, [audioTracks]);
 
   return (
-    <body className="participant_feed">
+    <div className="participant_feed">
       {participant?.identity.split(":")[0] === "Tutor " ? (
         <h3 className="participant_name">{participant.identity}</h3>
       ) : (
@@ -75,7 +75,7 @@ function Participant(props) {
       {/* <h3 className="participant_name">{participant.identity}</h3> */}
       <video ref={videoRef} autoPlay={true} />
       <audio ref={audioRef} autoPlay={true} muted={true} />
-    </body>
+    </div>
   );
 }
 
