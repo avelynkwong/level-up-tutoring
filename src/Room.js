@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createRef } from "react";
 import Video from "twilio-video";
 import Participant from "./Participant";
+import { useScreenshot } from "use-react-screenshot";
 import "./Styling/Room.css";
 
 function Room(props) {
+  const ref = createRef(null);
+  const [image, takeScreenshot] = useScreenshot();
   const roomName = props.roomName;
   const token = props.token;
   const logoutHandler = props.logoutHandler;
+
+  var isTutor = false;
 
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
@@ -14,6 +19,10 @@ function Room(props) {
   const remoteParticipants = participants.map((participant) => (
     <Participant key={participant.sid} participant={participant} />
   ));
+
+  function getImage() {
+    takeScreenshot(ref.current);
+  }
 
   useEffect(() => {
     const participantConnected = (participant) => {
@@ -49,7 +58,14 @@ function Room(props) {
       });
     };
   }, [roomName, token]);
-  
+
+  if (
+    room?.localParticipant.identity &&
+    room?.localParticipant?.identity.split(":")[0] === "Tutor "
+  ) {
+    isTutor = true;
+  }
+
   return (
     <div className="room">
       <button onClick={logoutHandler}>Log out</button>
@@ -63,10 +79,17 @@ function Room(props) {
           ""
         )}
       </div>
-      {remoteParticipants.length!==0 ? (
+      {remoteParticipants.length !== 0 ? (
         <div>
-          <div>{remoteParticipants}</div>
-          
+          <div ref={ref}>{remoteParticipants}</div>
+          {isTutor ? (
+            <div>
+              <button className="screenshot" onClick={getImage}>Take Phoot</button>
+              <img src={image}></img>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         ""
