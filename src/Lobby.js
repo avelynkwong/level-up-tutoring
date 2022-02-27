@@ -11,11 +11,12 @@ function Lobby(props) {
   const set_student_tutor = props.student_tutor_ChangeHandler;
   return (
     <div>
-      <form onSubmit={submitHandler}>
-        <h2>Enter a room</h2>
+      <form className="submitForm" onSubmit={submitHandler}>
+        <h2>Start Session</h2>
         <div>
           <input
-            placeholder="Enter Name"
+            className = "inputField"
+            placeholder="Your Name"
             type="text"
             id="field"
             value={username}
@@ -26,7 +27,8 @@ function Lobby(props) {
 
         <div>
           <input
-            placeholder="Enter Room Name"
+            className = "inputField"
+            placeholder="Classroom Name"
             type="text"
             id="room"
             value={roomName}
@@ -36,11 +38,12 @@ function Lobby(props) {
         </div>
 
         <Form>
-          <Form.Field>
-            Selected value: <b>{student_tutor}</b>
+          <Form.Field className = "roleText">
+            Role: <b>{student_tutor}</b>
           </Form.Field>
           <Form.Field>
             <Checkbox
+              className = "checkbox"
               radio
               label=" Student"
               name="checkboxRadioGroup"
@@ -51,6 +54,7 @@ function Lobby(props) {
           </Form.Field>
           <Form.Field>
             <Checkbox
+              className = "checkbox"
               radio
               label=" Tutor"
               name="checkboxRadioGroup"
@@ -60,7 +64,9 @@ function Lobby(props) {
             />
           </Form.Field>
         </Form>
-        <button type="submit">Submit</button>
+        <div className="buttonHolder">
+          <button className="submitButton" type="submit">Enter Classroom</button>
+        </div>
       </form>
     </div>
   );

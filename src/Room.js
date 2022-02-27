@@ -20,18 +20,18 @@ function Room(props) {
     <Participant key={participant.sid} participant={participant} />
   ));
 
-  useEffect(() => {
-    function getImage() {
-      console.log(ref.current);
-      if (ref.current !== null) {
-        takeScreenshot(ref.current); // Updates the image based on ss
-      }
-      setTimeout(() => {
-        getImage();
-      }, 2000);
-    }
-    getImage();
-  });
+  // useEffect(() => {
+  //   function getImage() {
+  //     console.log(ref.current);
+  //     if (ref.current !== null) {
+  //       takeScreenshot(ref.current); // Updates the image based on ss
+  //     }
+  //     setTimeout(() => {
+  //       getImage();
+  //     }, 2000);
+  //   }
+  //   getImage();
+  // });
 
   useEffect(() => {
     const participantConnected = (participant) => {
@@ -88,23 +88,18 @@ function Room(props) {
           ""
         )}
       </div>
-      {/* {remoteParticipants.length !== 0 ? ( */}
       <div>
         <div ref={ref}>{remoteParticipants}</div>
-        {isTutor ? (
+        {/* {isTutor ? (
           <div>
-            {/* <button className="screenshot" onClick={getImage}>
-                Take Phoot
-              </button> */}
-            <img src={image} alt=""/>
+            <img src={image} alt="">
+              {console.log(image)}
+            </img>
           </div>
         ) : (
           ""
-        )}
+        )} */}
       </div>
-      {/* ) : (
-        ""
-      )} */}
     </div>
   );
 }

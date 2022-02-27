@@ -6,7 +6,7 @@ function App (){
   return (
     <div className="app">
       <footer className='header'>
-        Level Up Tutoring
+        LevelUp Tutoring
       </footer>
         <VideoChat />
     </div>
