@@ -17,7 +17,7 @@ Through this project, we learned a lot about creating an end-to-end application.
 During this hackathon, we successfully created another machine learning model using image segmentation techniques that could identify objects in the student's videostream. This could be used to determine if the student is distracted (ie. if the model detects the student is using their phone). A further expansion of this tutoring platform could involve an online examination mode which can use object detection and/or eye-tracking to proctor students for signs of cheating.
 
 # Demonstration
-
+![](Demo.gif)
 
 # Additional Resources
 The backend files and ML models used in this project were too large to be posted on this repository. They can be accessed here: https://mcgill-my.sharepoint.com/:u:/g/personal/mingyang_li_mail_mcgill_ca/EQrptgGaxk9Dh28Q_wfhs_QBLV3w5C2mj2OIslAnvNBpPw?e=B183Zx
