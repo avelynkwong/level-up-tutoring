@@ -16,7 +16,7 @@ Through this project, we learned a lot about creating an end-to-end application.
 # What's next for LevelUp Tutoring
 During this hackathon, we successfully created another machine learning model using image segmentation techniques that could identify objects in the student's videostream. This could be used to determine if the student is distracted (ie. if the model detects the student is using their phone). A further expansion of this tutoring platform could involve an online examination mode which can use object detection and/or eye-tracking to proctor students for signs of cheating.
 
-## Demonstration
+# Demonstration
 
 
 # Additional Resources
